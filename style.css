@@ -1,3 +1,8 @@
+/* 字体导入 - 使用国内CDN */
+@import url('https://fonts.font.im/css2?family=Caveat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.font.im/css2?family=Ma+Shan+Zheng&display=swap');
+@import url('https://fonts.font.im/css2?family=ZCOOL+XiaoWei&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -30,9 +35,6 @@
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
     --border-radius: 20px;
 }
-
-/* 设置全局字体 */
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&display=swap');
 
 body {
     font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', cursive;
