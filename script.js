@@ -23,8 +23,11 @@ async function getHolidays() {
             if (!tempHolidays[name]) {
                 tempHolidays[name] = [];
             }
+            // 设置时间为当天的0点
+            const date = new Date(holiday.date);
+            date.setHours(0, 0, 0, 0);
             tempHolidays[name].push({
-                date: new Date(holiday.date),
+                date: date,
                 info: holiday
             });
         });
@@ -37,9 +40,14 @@ async function getHolidays() {
             // 按日期排序
             dates.sort((a, b) => a.date - b.date);
             
-            // 只保留开始和结束日期
-            const startDate = dates[0].date;
-            const endDate = dates[dates.length - 1].date;
+            // 设置开始日期为0点
+            const startDate = new Date(dates[0].date);
+            startDate.setHours(0, 0, 0, 0);
+            
+            // 设置结束日期为24点（即第二天的0点）
+            const endDate = new Date(dates[dates.length - 1].date);
+            endDate.setDate(endDate.getDate() + 1);
+            endDate.setHours(0, 0, 0, 0);
             
             // 使用开始日期作为键
             const dateKey = startDate.toISOString().split('T')[0];
@@ -76,6 +84,7 @@ function getNextWeekend() {
     
     const nextWeekend = new Date(now);
     nextWeekend.setDate(now.getDate() + daysUntilWeekend);
+    // 设置为当天0点
     nextWeekend.setHours(0, 0, 0, 0);
     return nextWeekend;
 }
@@ -145,8 +154,9 @@ function updateCountdown(id, endDate) {
 function createHolidayElement(date, holidayInfo) {
     const { name, startDate, endDate } = holidayInfo;
     const now = new Date();
-    const isPast = endDate < now;
-    const isOngoing = now >= startDate && now <= endDate;
+    // 由于结束时间是第二天的0点，所以这里不需要调整
+    const isPast = endDate <= now;
+    const isOngoing = now >= startDate && now < endDate;
     
     const element = document.createElement('div');
     element.className = `countdown-item${isPast ? ' holiday-past' : ''}${isOngoing ? ' holiday-ongoing' : ''}`;
@@ -157,13 +167,17 @@ function createHolidayElement(date, holidayInfo) {
         weekday: 'long'
     });
     
-    const endDateStr = endDate.toLocaleDateString('zh-CN', { 
+    // 结束日期显示时需要减去一天，因为实际结束时间是第二天的0点
+    const displayEndDate = new Date(endDate);
+    displayEndDate.setDate(displayEndDate.getDate() - 1);
+    const endDateStr = displayEndDate.toLocaleDateString('zh-CN', { 
         month: 'long', 
         day: 'numeric',
         weekday: 'long'
     });
     
-    const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    // 计算持续天数时不需要+1，因为结束日期已经是第二天的0点
+    const duration = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
     
     element.innerHTML = `
         <h2>${name}</h2>
