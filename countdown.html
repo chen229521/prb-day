@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节假日倒计时</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="countdown-container">
+            <div class="countdown-item">
+                <h2>距离下个周末</h2>
+                <div id="weekend-countdown" class="countdown">
+                    <div class="time-block">
+                        <span id="weekend-days">--</span>
+                        <label>天</label>
+                    </div>
+                    <div class="time-block">
+                        <span id="weekend-hours">--</span>
+                        <label>时</label>
+                    </div>
+                    <div class="time-block">
+                        <span id="weekend-minutes">--</span>
+                        <label>分</label>
+                    </div>
+                    <div class="time-block">
+                        <span id="weekend-seconds">--</span>
+                        <label>秒</label>
+                    </div>
+                </div>
+            </div>
+            <div id="all-holidays" class="all-holidays">
+                <!-- 节假日倒计时将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -3,38 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>节假日倒计时</title>
-    <link rel="stylesheet" href="style.css">
+    <title>摸鱼小站</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div class="container">
-        <div class="countdown-container">
-            <div class="countdown-item">
-                <h2>距离下个周末</h2>
-                <div id="weekend-countdown" class="countdown">
-                    <div class="time-block">
-                        <span id="weekend-days">--</span>
-                        <label>天</label>
-                    </div>
-                    <div class="time-block">
-                        <span id="weekend-hours">--</span>
-                        <label>时</label>
-                    </div>
-                    <div class="time-block">
-                        <span id="weekend-minutes">--</span>
-                        <label>分</label>
-                    </div>
-                    <div class="time-block">
-                        <span id="weekend-seconds">--</span>
-                        <label>秒</label>
-                    </div>
+    <div class="app-container">
+        <!-- 头部区域 -->
+        <header class="app-header">
+            <!-- Tabs导航 -->
+            <div class="tabs">
+                <div class="tab active" data-tab="countdown">
+                    <span class="tab-icon">📅</span>
+                    节假日倒计时
+                </div>
+                <div class="tab" data-tab="relax">
+                    <span class="tab-icon">🎮</span>
+                    摸鱼
                 </div>
             </div>
-            <div id="all-holidays" class="all-holidays">
-                <!-- 节假日倒计时将在这里动态生成 -->
+        </header>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 倒计时模块 -->
+            <div id="countdown" class="tab-content active">
+                <iframe src="countdown.html" frameborder="0"></iframe>
             </div>
-        </div>
+
+            <!-- 摸鱼模块 -->
+            <div id="relax" class="tab-content">
+                <iframe src="relax.html" frameborder="0"></iframe>
+            </div>
+        </main>
     </div>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 </html> 
