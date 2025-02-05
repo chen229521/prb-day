@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>摸鱼小站</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 头部区域 -->
+        <header class="app-header">
+            <!-- Tabs导航 -->
+            <div class="tabs">
+                <div class="tab active" data-tab="countdown">
+                    <span class="tab-icon">📅</span>
+                    节假日倒计时
+                </div>
+                <div class="tab" data-tab="relax">
+                    <span class="tab-icon">🎮</span>
+                    摸鱼
+                </div>
+            </div>
+        </header>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 倒计时模块 -->
+            <div id="countdown" class="tab-content active">
+                <iframe src="index.html" frameborder="0"></iframe>
+            </div>
+
+            <!-- 摸鱼模块 -->
+            <div id="relax" class="tab-content">
+                <iframe src="relax.html" frameborder="0"></iframe>
+            </div>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html> 

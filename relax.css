@@ -1,0 +1,289 @@
+@import url('https://fonts.font.im/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 主题色 */
+    --primary-color: #E48E7E;
+    --secondary-color: #9D8AA8;
+    --accent-color: #E48E8E;
+    --background-gradient: linear-gradient(135deg, 
+        rgba(228, 181, 163, 0.95) 0%, 
+        rgba(157, 138, 168, 0.95) 100%
+    );
+    --card-bg: rgba(255, 255, 255, 0.95);
+    
+    /* 文字颜色 */
+    --text-primary: #2D3748;
+    --text-secondary: #4A5568;
+    --text-muted: #718096;
+    
+    /* 阴影 */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    
+    /* 圆角 */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+}
+
+body {
+    font-family: 'Noto Serif SC', serif;
+    background: var(--background-gradient);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.hot-search-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.hot-search-container {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hot-search-container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg), 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.platform-header {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.platform-icon {
+    font-size: 1.2rem;
+}
+
+.hot-search-list {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    will-change: scroll-position;
+}
+
+/* 自定义滚动条样式 - Webkit浏览器 */
+.hot-search-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.hot-search-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+}
+
+.hot-search-list::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    opacity: 0.6;
+}
+
+.hot-search-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-color);
+}
+
+/* 确保内容不会太靠近滚动条 */
+.hot-search-item:last-child {
+    margin-bottom: 0.5rem;
+}
+
+/* 添加渐变遮罩效果 */
+.hot-search-list::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
+    pointer-events: none;
+    opacity: 0.8;
+    margin-bottom: 2.6rem; /* 为更新时间留出空间 */
+}
+
+.hot-search-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease-out;
+    will-change: transform, opacity;
+}
+
+.hot-search-item:hover {
+    background: rgba(228, 142, 126, 0.08);
+    transform: translateX(4px) !important;
+}
+
+.hot-search-rank {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    width: 2rem;
+    text-align: center;
+}
+
+.hot-search-rank.top-3 {
+    color: var(--accent-color);
+    font-size: 1.3rem;
+}
+
+.hot-search-content {
+    flex: 1;
+    margin-left: 0.8rem;
+}
+
+.hot-search-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.hot-search-heat {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.update-time {
+    text-align: center;
+    padding: 0.8rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 1200px) {
+    .hot-search-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hot-search-container {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .hot-search-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .hot-search-container {
+        height: 400px;
+    }
+    
+    .platform-header {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+    
+    .hot-search-item {
+        padding: 0.6rem;
+    }
+    
+    .hot-search-title {
+        font-size: 0.9rem;
+    }
+    
+    .hot-search-heat {
+        font-size: 0.8rem;
+    }
+}
+
+/* 加载状态和错误状态样式 */
+.loading, .error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.loading {
+    position: relative;
+    padding-left: 24px;
+}
+
+.loading::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.error {
+    cursor: pointer;
+    color: var(--accent-color);
+    transition: opacity 0.3s ease;
+}
+
+.error:hover {
+    opacity: 0.8;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+} 

@@ -1,0 +1,9 @@
+https://sbmy.fun/api/hotSearch/queryByType?type=baidu
+https://sbmy.fun/api/hotSearch/queryByType?type=douyin
+https://sbmy.fun/api/hotSearch/queryByType?type=weibo
+https://sbmy.fun/api/hotSearch/queryByType?type=tencent
+https://sbmy.fun/api/hotSearch/queryByType?type=bilibili
+https://sbmy.fun/api/hotSearch/queryByType?type=zhihu
+https://sbmy.fun/api/hotSearch/queryByType?type=tieba
+https://sbmy.fun/api/hotSearch/queryByType?type=sougou
+https://sbmy.fun/api/hotSearch/queryByType?type=toutiao
